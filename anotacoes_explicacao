@@ -1,0 +1,9 @@
+Método gravaDiretorio:
+
+O erro ocorre porque você está chamando disco.write(BLOCO_DIRETORIO, buffer.array()) dentro do loop, ou seja, para cada entrada do diretório, você está sobrescrevendo o bloco inteiro do diretório no disco. Além disso, o buffer pode não estar completamente preenchido, ou pode conter dados parciais.
+
+Principais problemas:
+
+Sobrescrita: Cada chamada sobrescreve o bloco anterior, então só a última entrada fica salva.
+Tamanho do buffer: O buffer deve ser preenchido com todas as entradas antes de gravar no disco.
+Chamada única: O correto é montar o buffer inteiro com todas as entradas e só depois chamar disco.write.

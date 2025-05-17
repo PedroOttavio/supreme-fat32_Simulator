@@ -1,0 +1,15 @@
+🧠 Dica para validar o progresso:
+
+-Comece fazendo o método create funcionar com arquivos pequenos (≤ 1 bloco)
+-Depois teste o método read com offset = 0 e limit = -1
+-Em seguida implemente append e remove
+-Por último, trate exceções e faça testes de robustez
+
+
+private void leFat() throws IOException {
+    byte[] bloco = disco.read(BLOCO_FAT);
+    ByteBuffer buffer = ByteBuffer.wrap(bloco);
+    for (int i = 0; i < fat.length; i++) {
+        fat[i] = buffer.getInt();
+    }
+}
